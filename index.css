@@ -5,37 +5,32 @@ body {
   background-color: white;
   font-family: Arial, sans-serif;
 }
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-/* Bannière fixe */
+/* Bannière fixe et simple */
 .banniere {
-  position: fixed;       /* reste en haut quand tu scrolles */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ff6600;
-  color: white;
-  padding: 15px 20px;
+  background-color: white;   /* fond blanc */
   display: flex;
-  justify-content: space-between;  /* titre à gauche, menu à droite */
+  justify-content: space-between; /* titre à gauche, menu à droite */
   align-items: center;
-  z-index: 1000;        /* toujours au-dessus */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
 }
 
 .banniere h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
 }
 
+/* Menu en ligne sans puces */
 .banniere nav ul {
   list-style: none;
-  display: flex;
   margin: 0;
   padding: 0;
+  display: flex;
 }
 
 .banniere nav li {
@@ -43,17 +38,18 @@ body {
 }
 
 .banniere nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+  color: black;              /* texte noir */
+  text-decoration: none;     /* pas de souligné normal */
+  padding-bottom: 3px;
+  border-bottom: 2px solid blue;  /* trait bleu sous le lien */
 }
 
 .banniere nav a:hover {
-  text-decoration: underline;
+  opacity: 0.7;             /* léger effet au survol */
 }
 
 /* Pour que le contenu ne soit pas caché derrière la bannière */
 main {
-  margin-top: 80px;   /* ajuster selon la hauteur de la bannière */
+  margin-top: 60px;   /* hauteur de la bannière */
   padding: 20px;
 }
