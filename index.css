@@ -5,8 +5,55 @@ body {
   background-color: white;
   font-family: Arial, sans-serif;
 }
-header {
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Bannière fixe */
+.banniere {
+  position: fixed;       /* reste en haut quand tu scrolles */
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: #ff6600;
   color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;  /* titre à gauche, menu à droite */
+  align-items: center;
+  z-index: 1000;        /* toujours au-dessus */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.banniere h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.banniere nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.banniere nav li {
+  margin-left: 20px;
+}
+
+.banniere nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.banniere nav a:hover {
+  text-decoration: underline;
+}
+
+/* Pour que le contenu ne soit pas caché derrière la bannière */
+main {
+  margin-top: 80px;   /* ajuster selon la hauteur de la bannière */
   padding: 20px;
-  text-align: center;
+}
