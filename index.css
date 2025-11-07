@@ -14,3 +14,39 @@ h1 {
 p {
   font-size: 18px;
 }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 20px;
+}
+
+.articles {
+  max-width: 600px;      /* largeur lisible */
+  margin: 0 auto;        /* centrer la colonne */
+}
+
+article {
+  background-color: white;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-left: 5px solid #ff6600; /* petit style simple */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+article h2 {
+  margin-top: 0;
+  color: #ff6600;        /* couleur vive comme sur Lou Lubie */
+}
+
+article .date {
+  font-size: 0.9em;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+article img {
+  max-width: 100%;       /* responsive */
+  margin-top: 10px;
+  border-radius: 5px;
+}
