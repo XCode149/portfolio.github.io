@@ -53,3 +53,8 @@ main {
   margin-top: 60px;   /* hauteur de la bannière */
   padding: 20px;
 }
+.centre {
+  display: block;      /* pour pouvoir la centrer */
+  margin-left: auto;   /* marge automatique à gauche */
+  margin-right: auto;  /* marge automatique à droite */
+}
