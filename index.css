@@ -68,3 +68,10 @@ main {
   width: 200px;         /* taille fixe pour rester propre */
   height: auto;
 }
+.fond {
+  background-image: url('https://i.ibb.co/qMF9m7Wr/IMG-4276.png');
+  background-size: cover;       /* l'image remplit tout le paragraphe */
+  background-position: center;  /* centrée */
+  color: white;                 /* texte lisible */
+  padding: 20px;                /* espace autour du texte */
+}
