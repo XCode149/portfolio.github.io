@@ -58,4 +58,13 @@ main {
   margin-left: auto;   /* marge automatique à gauche */
   margin-right: auto;  /* marge automatique à droite */
 }
+.bloc {
+  display: flex;
+  align-items: center;  /* aligne verticalement */
+  gap: 20px;            /* espace entre image et texte */
+}
 
+.bloc img {
+  width: 200px;         /* taille fixe pour rester propre */
+  height: auto;
+}
