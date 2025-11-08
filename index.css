@@ -2,7 +2,7 @@
   body { background-color: lightgreen; }
 } 
 body {
-  background-color: white;
+  background-image: url("https://i.ibb.co/C3dWsFy6/IMG-4270.jpg");
   font-family: Arial, sans-serif;
 }
 /* Bannière fixe et simple */
@@ -58,3 +58,4 @@ main {
   margin-left: auto;   /* marge automatique à gauche */
   margin-right: auto;  /* marge automatique à droite */
 }
+
