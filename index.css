@@ -177,3 +177,30 @@ main {
   border-radius: 0 2px 2px 0;
   box-shadow: -10px 0 50px 10px #666;
 }
+.custom-loader {
+  width: 80px;
+  height: 80px;
+  color: #F40000;
+  display: grid;
+}
+
+.custom-loader::before,
+.custom-loader::after {
+  content: "";
+  grid-area: 1/1;
+  background: currentColor;
+  clip-path: polygon(0 0,101% 0, 0 100%);
+  animation: sp3 2s infinite;
+}
+.custom-loader::after {
+  --s:-1,-1;
+}
+
+@keyframes sp3 {
+    0%,
+    10%  {transform:scale(var(--s,1)) translate(0,0)        rotate(0deg)}
+    33%  {transform:scale(var(--s,1)) translate(40px,-40px) rotate(0deg)}
+    66%  {transform:scale(var(--s,1)) translate(40px,-40px) rotate(180deg)}
+    90%,
+    100% {transform:scale(var(--s,1)) translate(0px,0px)    rotate(180deg)}
+}
