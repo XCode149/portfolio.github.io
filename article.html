@@ -3,214 +3,162 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Guide professionnel — Créer un point-and-click (HTML/CSS/JS)</title>
+  <title>Guide illustré — Créer un point-and-click (HTML/CSS/JS)</title>
   <style>
-    /* Variables pour personnalisation rapide */
-    :root{
-      --bg:#f6f3ee;
-      --paper:#fffdf8;
-      --accent:#c9a77a;
-      --accent-dark:#8b5a2b;
-      --text:#2d2d2d;
-      --muted:#7a6a5f;
-      --shadow: 0 8px 24px rgba(28,22,16,0.12);
-      --radius:12px;
-      --maxw:1000px;
-      --container-padding:36px;
-    }
+  :root{
+    --bg:#1e1f28;
+    --paper:#2b2c38;
+    --accent:#ff6f61;
+    --accent-dark:#ff3d2e;
+    --text:#f0f0f0;
+    --muted:#aaaaaa;
+    --shadow:0 12px 30px rgba(0,0,0,0.5);
+    --radius:18px;
+    --maxw:900px;
+    --pad:32px;
+  }
 
-    /* Global */
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:Inter, 'Segoe UI', Roboto, Georgia, serif}
-    .wrap{max-width:var(--maxw);margin:36px auto;padding:var(--container-padding)}
-
-    /* Couverture (vieux livre stylisé) */
-    .cover{
-      display:flex;flex-direction:row;gap:24px;align-items:center;padding:28px;border-radius:14px;background:linear-gradient(180deg, var(--accent), var(--accent-dark));color:#fff;box-shadow:var(--shadow);border:3px solid rgba(0,0,0,0.08)
-    }
-    .cover .title{font-family: Georgia, 'Times New Roman', serif;font-size:28px;font-weight:700;line-height:1.1}
-    .cover .meta{opacity:0.95;font-size:14px;color:rgba(255,255,255,0.95)}
-
-    /* Livre & pages */
-    .book{margin-top:22px}
-    .page{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:22px;border:1px solid rgba(0,0,0,0.04)}
-    .page h1,.page h2{font-family:Georgia, serif;color:var(--accent-dark);margin:0 0 12px 0}
-    .page h3{color:var(--accent-dark);margin:0 0 8px}
-
-    /* Sommaire */
-    .toc{display:flex;gap:20px;flex-wrap:wrap}
-    .toc a{display:inline-block;padding:8px 12px;background:linear-gradient(180deg, #fff,#f7f3ee);border-radius:8px;border:1px solid rgba(0,0,0,0.03);text-decoration:none;color:var(--muted)}
-
-    /* Bloc code */
-    .code{background:#fbf7f1;border-radius:8px;padding:16px;border:1px solid #efe7dc;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Courier New', monospace;font-size:13px;overflow:auto}
-
-    /* Trois colonnes pour layout détaillé */
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
-    .aside{background:linear-gradient(180deg,#fff,#fcfbf8);border-radius:10px;padding:18px;border:1px solid rgba(0,0,0,0.03)}
-
-    /* Listes */
-    ul{padding-left:20px}
-    li{margin:8px 0}
-
-    /* Footer minimal */
-    .footer{font-size:13px;color:var(--muted);text-align:center;margin-top:28px}
-
-    /* Responsive */
-    @media (max-width:880px){.grid{grid-template-columns:1fr}.aside{order:2}}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter", sans-serif;}
+  .wrap{max-width:var(--maxw);margin:40px auto;padding:var(--pad);}
+  .cover{background:linear-gradient(135deg, var(--accent), var(--accent-dark));border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);color:#fff;display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .cover .title{font-size:40px;font-weight:800;letter-spacing:1px;margin-bottom:8px;}
+  .cover .meta{font-size:16px;opacity:0.85;}
+  .page{background:var(--paper);border-radius:var(--radius);padding:30px;margin:30px 0;box-shadow:var(--shadow);border-left:6px solid var(--accent);transition:transform 0.2s ease;}
+  .page:hover{transform:translateY(-4px);}
+  .page h2{color:var(--accent);font-size:28px;margin-bottom:12px;}
+  .lead{color:var(--muted);margin-bottom:16px}
+  .illu{width:100%;border-radius:14px;border:2px solid var(--accent-dark);box-shadow:0 6px 20px rgba(0,0,0,0.4);margin-bottom:12px;}
+  .caption{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .code{background:#33334d;border-radius:14px;padding:16px;border-left:4px solid var(--accent);font-family:ui-monospace, Menlo, Monaco, monospace;font-size:14px;overflow:auto;margin-bottom:16px;color:#f0f0f0;}
+  .grid{display:grid;grid-template-columns:1fr 320px;gap:24px;}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  .aside{background:#2b2c38;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border-left:4px solid var(--accent);}
+  a{color:var(--accent);text-decoration:none;font-weight:600}
+  a:hover{text-decoration:underline}
   </style>
 </head>
 <body>
   <div class="wrap">
-
-    <!-- Couverture -->
-    <header class="cover" aria-hidden>
-      <div>
-        <div class="title">Créer un jeu point-and-click</div>
-        <div class="meta">Guide professionnel — HTML · CSS · JavaScript</div>
-      </div>
-      <div style="margin-left:auto;text-align:right;opacity:0.95">
-        <div style="font-weight:700">Version personnalisable</div>
-        <div style="font-size:13px;color:rgba(255,255,255,0.9)">Thème: Papier / BD</div>
-      </div>
+    <header class="cover">
+      <div class="title">Créer un jeu point-and-click</div>
+      <div class="meta">Guide complet, original et illustré — HTML · CSS · JavaScript</div>
     </header>
 
-    <!-- Sommaire + contenu -->
-    <section class="page">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
-        <h1>Guide professionnel — point-and-click pour le web</h1>
-        <nav class="toc" aria-label="Sommaire">
-          <a href="#intro">Intro</a>
-          <a href="#structure">Structure</a>
-          <a href="#hotspots">Hotspots</a>
-          <a href="#scenes">Scènes</a>
-          <a href="#inventory">Inventaire</a>
-          <a href="#dialogues">Dialogues</a>
-          <a href="#engine">Mini-moteur</a>
-          <a href="#ui">UI</a>
-          <a href="#learn-js">Apprendre JS</a>
-        </nav>
-      </div>
+    <nav style="margin-top:24px;text-align:center;">
+      <span style="font-weight:700;color:var(--accent)">Sommaire</span>
+      <ul style="display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 0 0;padding-left:0;list-style:none;justify-content:center">
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#structure">Structure</a></li>
+        <li><a href="#hotspots">Hotspots</a></li>
+        <li><a href="#scenes">Scènes</a></li>
+        <li><a href="#inventory">Inventaire</a></li>
+        <li><a href="#dialogues">Dialogues</a></li>
+        <li><a href="#engine">Mini-moteur</a></li>
+        <li><a href="#ui">UI</a></li>
+        <li><a href="#learn-js">Apprendre JS</a></li>
+      </ul>
+    </nav>
 
-      <hr style="margin:18px 0;border:none;border-top:1px solid rgba(0,0,0,0.04)">
+    <div class="grid">
+      <main>
+        <div class="page" id="intro">
+          <h2>Introduction</h2>
+          <p class="lead">Apprenez à créer votre propre jeu point-and-click directement dans le navigateur, sans aucun logiciel externe.</p>
+          <img src="illu_intro.png" alt="Intro illustration" class="illu">
+          <p class="caption">Exemple d'interface d'un jeu point-and-click.</p>
+        </div>
 
-      <div class="grid">
+        <div class="page" id="structure">
+          <h2>Structure HTML</h2>
+          <p class="lead">Organisez vos scènes et objets interactifs dans des divs et sections modulaires.</p>
+          <div class="code"><pre>&lt;div class="scene" id="scene1"&gt;
+  &lt;img src="background.png" class="bg"/&gt;
+  &lt;div class="hotspot" data-action="look"&gt;...</div>
+&lt;/div&gt;</pre></div>
+          <img src="illu_structure.png" alt="Structure illustration" class="illu">
+        </div>
 
-        <!-- Colonne principale -->
-        <main>
+        <div class="page" id="hotspots">
+          <h2>Hotspots</h2>
+          <p class="lead">Définissez les zones interactives avec des attributs de données pour gérer les actions.</p>
+          <div class="code"><pre>&lt;div class="hotspot" data-action="pickup" data-item="key"&gt;Clé&lt;/div&gt;</pre></div>
+          <img src="illu_hotspots.png" alt="Hotspots illustration" class="illu">
+        </div>
 
-          <article class="page" id="intro">
-            <h2>Introduction</h2>
-            <p>Ce document explique, étape par étape et avec exemples réutilisables, comment concevoir un jeu point-and-click utilisant uniquement HTML, CSS et JavaScript. Le contenu est formulé de manière professionnelle et prêt à être copié-collé dans un projet.</p>
-          </article>
+        <div class="page" id="scenes">
+          <h2>Scènes</h2>
+          <p class="lead">Organisez les différentes scènes du jeu avec un système simple de navigation entre elles.</p>
+          <div class="code"><pre>function goToScene(id){
+  document.querySelectorAll('.scene').forEach(s =&gt; s.style.display='none');
+  document.getElementById(id).style.display='block';
+}</pre></div>
+        </div>
 
-          <article class="page" id="structure">
-            <h2>1. Structure de base</h2>
-            <p>Utilisez des <code>&lt;div&gt;</code> modulaires pour séparer la logique et l'affichage : une « scène » (conteneur), un panneau d'inventaire, une zone de dialogues et des hotspots positionnés en absolu.</p>
-            <div class="code">
-<pre>&lt;div id="app" class="game"&gt;
-  &lt;div id="scene" class="scene"&gt;&lt;/div&gt;
-  &lt;div id="ui" class="ui"&gt;
-    &lt;div id="inventory" class="inventory"&gt;&lt;/div&gt;
-    &lt;div id="dialogue" class="dialogue"&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</pre>
-            </div>
-            <p>Avantage : tout est contenu dans des <code>&lt;div&gt;</code>, facile à styliser et à rendre réutilisable.</p>
-          </article>
+        <div class="page" id="inventory">
+          <h2>Inventaire</h2>
+          <p class="lead">Créez un inventaire dynamique pour les objets ramassés.</p>
+          <div class="code"><pre>let inventory=[];
+function addItem(item){
+  inventory.push(item);
+  updateInventoryUI();
+}</pre></div>
+        </div>
 
-          <article class="page" id="hotspots">
-            <h2>2. Hotspots (zones cliquables)</h2>
-            <p>Créez des éléments positionnés absolument et contrôlez-les via JavaScript. Exemple de style réutilisable :</p>
-            <div class="code">
-<pre>.hotspot{position:absolute;cursor:pointer;outline:2px solid transparent}
-.hotspot:hover{outline-color:var(--accent)}
-</pre>
-            </div>
-            <p>Gérez les hotspots via un tableau d'objets (x, y, largeur, hauteur, action).</p>
-          </article>
+        <div class="page" id="dialogues">
+          <h2>Dialogues</h2>
+          <p class="lead">Affichez les dialogues et descriptions en pop-ups ou zones dédiées.</p>
+          <div class="code"><pre>function showDialogue(text){
+  const dlg = document.getElementById('dialogue');
+  dlg.textContent = text;
+  dlg.style.display = 'block';
+}</pre></div>
+        </div>
 
-          <article class="page" id="scenes">
-            <h2>3. Gestion des scènes</h2>
-            <p>Stockez les scènes dans un objet JS et chargez dynamiquement le HTML/CSS correspondant. Exemple d'API minimale :</p>
-            <div class="code">
-<pre>const scenes = {
-  'room1':{bg:'room1.jpg',hotspots:[/*...*/]},
-  'room2':{bg:'room2.jpg',hotspots:[/*...*/]}
-}
-function loadScene(name){/* met à jour #scene */}
-</pre>
-            </div>
-          </article>
+        <div class="page" id="engine">
+          <h2>Mini-moteur JavaScript</h2>
+          <p class="lead">Combinez scènes, hotspots et inventaire pour rendre le jeu interactif.</p>
+          <div class="code"><pre>// Initialisation simple
+const scenes = document.querySelectorAll('.scene');
+scenes.forEach(scene =&gt; scene.style.display='none');
+goToScene('scene1');</pre></div>
+        </div>
 
-          <article class="page" id="inventory">
-            <h2>4. Inventaire</h2>
-            <p>Représentez l'inventaire par un tableau d'objets et rendez-le dans un <code>&lt;div&gt;</code>. Exemple :</p>
-            <div class="code">
-<pre>const inventory = [];
-function pickItem(item){inventory.push(item);renderInventory()}</pre>
-            </div>
-            <p>Offrez la possibilité de configurer l'affichage (taille d'icônes, comportement au clic) via des classes CSS.</p>
-          </article>
+        <div class="page" id="ui">
+          <h2>Interface Utilisateur</h2>
+          <p class="lead">Améliorez l'interface avec inventaire, boutons et effets visuels.</p>
+          <img src="illu_ui.png" alt="UI illustration" class="illu">
+        </div>
 
-          <article class="page" id="dialogues">
-            <h2>5. Dialogues</h2>
-            <p>Structure simple : tableau de lignes et contrôleur d'affichage. Séparez données et rendu pour pouvoir traduire facilement.</p>
-            <div class="code"><pre>function showDialogue(lines){/* affiche une boîte et boucle sur lines */}</pre></div>
-          </article>
+        <div class="page" id="learn-js">
+          <h2>Apprendre JavaScript</h2>
+          <p class="lead">Pour tout coder, commencez par apprendre les bases du JavaScript : variables, fonctions, événements et DOM.</p>
+          <ul>
+            <li>Variables et constantes</li>
+            <li>Fonctions et portée</li>
+            <li>Gestion des événements</li>
+            <li>Manipulation du DOM</li>
+          </ul>
+          <p>Ensuite, vous pouvez coder vos scènes, hotspots et inventaire directement dans le navigateur.</p>
+        </div>
+      </main>
 
-          <article class="page" id="engine">
-            <h2>6. Mini-moteur</h2>
-            <p>Centralisez la logique : gestionnaire d'état, loader de scènes, système d'événements, inventaire, et sauvegarde (localStorage). Exemple d'API :</p>
-            <div class="code"><pre>const Engine = {
-  state:{scene:null,inventory:[]},
-  loadScene(name){/*...*/},
-  triggerHotspot(id){/*...*/}
-}
-</pre></div>
-          </article>
+      <aside class="aside">
+        <h3>Notes rapides</h3>
+        <ul>
+          <li>Remplacez les illustrations par vos images.</li>
+          <li>Les blocs <code>.page</code> sont modulaires et faciles à exporter.</li>
+          <li>Je peux générer un <code>index.html</code> complet avec le mini-moteur.</li>
+        </ul>
 
-          <article class="page" id="ui">
-            <h2>7. Interface utilisateur (personnalisable)</h2>
-            <p>Le design est construit autour de classes: <code>.scene</code>, <code>.hotspot</code>, <code>.inventory</code>, <code>.dialogue</code>. Modifiez les variables CSS en haut du document pour adapter le rendu (couleurs, rayon, ombre).</p>
-            <div class="code"><pre>/* Exemple : personnaliser via :root */
-:root{--accent:#c9a77a;--paper:#fffdf8;--radius:12px}
-</pre></div>
-          </article>
+        <h3>Paramètres rapides</h3>
+        <div class="code"><pre>:root{--accent:#ff6f61;--radius:18px}</pre></div>
 
-          <article class="page" id="learn-js">
-            <h2>8. Apprendre le JavaScript (par étapes pratiques)</h2>
-            <ol>
-              <li>Notions de base : variables, fonctions, structures de contrôle.</li>
-              <li>Manipulation du DOM : sélectionner, créer et modifier des <code>&lt;div&gt;</code>.</li>
-              <li>Événements : gérer les clics, mouvements et entrées clavier.</li>
-              <li>Sérialisation et stockage : sauvegarder l'état via <code>localStorage</code>.</li>
-              <li>Modularité : séparer utilitaires, scènes et UI dans des fichiers ou modules.</li>
-              <li>Mise en pratique : implémentez un mini-moteur et améliorez-le progressivement.</li>
-            </ol>
-            <p>Ressources recommandées : MDN, tutoriels JS modernes, et travaux pratiques.</p>
-          </article>
+        <h3>Besoin d'images ?</h3>
+        <p>Illustrations ou placeholders haute qualité disponibles.</p>
+      </aside>
+    </div>
 
-        </main>
-
-        <!-- Colonne droite (aside) -->
-        <aside class="aside">
-          <h3>Exemples rapides</h3>
-          <p class="muted">Copier-coller rapide</p>
-          <div class="code"><pre>// créer un hotspot
-doc.createElement('div')
-// positionner : el.style.left = '100px'</pre></div>
-
-          <h3>Personnalisation</h3>
-          <p>Changez les variables CSS dans <code>:root</code> pour modifier l'apparence entière sans toucher au HTML.</p>
-
-          <h3>Export</h3>
-          <p>Pour transformer ce guide en template : fournissez vos images (<code>room1.jpg</code>, etc.) et je génère un <code>index.html</code> complet.</p>
-        </aside>
-
-      </div>
-    </section>
-
-    <div class="footer">Document professionnel — Modifiable et réutilisable • Export possible en template</div>
+    <div style="text-align:center;color:var(--muted);margin-top:20px;font-size:13px">Site original et interactif — personnalisable.</div>
   </div>
 </body>
 </html>
