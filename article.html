@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créer un jeu vidéo Point-and-Click en HTML, CSS et JavaScript</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0;
+      background: #d6c1a5;
+      color: #2b2b2b;
+    }
+    .cover {
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      margin: 0 auto 40px auto;
+      background: linear-gradient(145deg, #8b5a2b, #a9784f);
+      border-radius: 15px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      font-size: 2em;
+      font-weight: bold;
+      border: 3px solid #5c3a1a;
+    }
+    .book {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      transform-style: preserve-3d;
+    }
+    .bloc {
+      background: #fffdf9;
+      border: 1px solid #e2d9cf;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      font-family: 'Georgia', serif;
+      font-weight: bold;
+      color: #3b3028;
+      border-left: 6px solid #d7c7b5;
+      padding-left: 12px;
+    }
+    ul li { margin: 6px 0; }
+    pre {
+      background: #fef8f2;
+      padding: 18px;
+      border-radius: 6px;
+      overflow-x: auto;
+      border: 1px solid #e2d9cf;
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+    }
+    code { font-family: 'Courier New', monospace; font-size: 15px; }
+    img { border-radius: 6px; border: 1px solid #d6cec4; box-shadow: 0 2px 6px rgba(0,0,0,0.08); max-width: 100%; }
+    a { color: #6b4f3f; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="cover">Créer un jeu vidéo Point-and-Click</div>
+
+  <div class="book">
+
+    <h2>Sommaire</h2>
+    <ul>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#structure">Structure de base du projet</a></li>
+      <li><a href="#hotspots">Création des hotspots</a></li>
+      <li><a href="#scenes">Gestion des scènes</a></li>
+      <li><a href="#extensions">Extensions possibles</a></li>
+      <li><a href="#inventory">Inventaire</a></li>
+      <li><a href="#dialogues">Dialogues</a></li>
+      <li><a href="#engine">Mini-moteur</a></li>
+      <li><a href="#ui">Interface utilisateur</a></li>
+      <li><a href="#learn-js">Apprendre le JavaScript</a></li>
+    </ul>
+
+    <div class="bloc">
+      <h1 id="intro">Créer un jeu vidéo Point-and-Click en HTML, CSS et JavaScript</h1>
+      <p><img src="illustration-pointclick.png" alt="Illustration point and click"></p>
+      <p>Ce guide présente une méthode simple pour créer un jeu vidéo de type <strong>point-and-click</strong> directement dans un navigateur, en utilisant uniquement HTML, CSS et JavaScript. Aucun logiciel n'est requis.</p>
+    </div>
+
+    <div class="bloc">
+      <h2 id="structure">1. Structure de base du projet</h2>
+      <p>Le projet repose sur une page HTML avec une zone de jeu et des hotspots cliquables.</p>
+      <pre><code>&lt;div id="jeu"&gt;&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="bloc">
+      <h2 id="hotspots">2. Création des hotspots</h2>
+      <p>Les hotspots sont des zones interactives transparentes au-dessus de l'image.</p>
+    </div>
+
+    <div class="bloc">
+      <h2 id="scenes">3. Gestion des scènes</h2>
+      <p>Changer la scène revient à remplacer l'image de fond ou modifier les hotspots dynamiquement.</p>
+    </div>
+
+    <div class="bloc">
+      <h2 id="extensions">4. Extensions possibles</h2>
+      <ul>
+        <li>Inventaire interactif</li>
+        <li>Boîte de dialogue</li>
+        <li>Animations CSS</li>
+        <li>Énigmes et puzzles</li>
+      </ul>
+    </div>
+
+    <div class="bloc">
+      <h2 id="inventory">5. Inventaire</h2>
+      <p>Exemple simple d'inventaire avec un tableau JavaScript :</p>
+      <pre><code>const inventaire = [];
+function ramasser(objet) { inventaire.push(objet); }</code></pre>
+    </div>
+
+    <div class="bloc">
+      <h2 id="dialogues">6. Dialogues</h2>
+      <p>Exemple de dialogue simple :</p>
+      <pre><code>const dialogues = ["Bienvenue.", "Que veux-tu faire ?"];</code></pre>
+    </div>
+
+    <div class="bloc">
+      <h2 id="engine">7. Mini-moteur (scènes et hotspots)</h2>
+      <p>Centraliser les scènes et leurs hotspots dans un objet JavaScript.</p>
+    </div>
+
+    <div class="bloc">
+      <h2 id="ui">8. Interface utilisateur améliorée</h2>
+      <p>Un design premium type BD avec inventaire et zone de dialogue :</p>
+      <pre><code>#jeu { width:800px; height:600px; background:#fdf7f0; border:2px solid #d4cabb; border-radius:6px; position:relative; }
+#inventaire-ui { position:absolute; bottom:0; left:0; width:100%; height:80px; background:rgba(200,180,160,0.6); display:flex; gap:10px; padding:10px; border-radius:4px; }
+.item { width:60px; height:60px; background:#fff; border:2px solid #b0a090; border-radius:4px; display:flex; justify-content:center; align-items:center; cursor:pointer; }</code></pre>
+    </div>
+
+    <div class="bloc">
+      <h2 id="learn-js">9. Apprendre le JavaScript</h2>
+      <p>Pour maîtriser le JavaScript et pouvoir créer des jeux complets, voici une approche progressive :</p>
+      <ul>
+        <li>Commencez par comprendre les variables, types de données et fonctions.</li>
+        <li>Apprenez à manipuler le DOM pour modifier la page web dynamiquement.</li>
+        <li>Découvrez les événements pour interagir avec les clics et les touches.</li>
+        <li>Étudiez les tableaux et objets pour gérer l'inventaire et les scènes.</li>
+        <li>Explorez les boucles et conditions pour gérer la logique du jeu.</li>
+        <li>Essayez des projets simples : compteurs, mini-jeux, animations CSS avec JS.</li>
+        <li>Progressivement, combinez vos connaissances pour créer un moteur de jeu point-and-click.</li>
+      </ul>
+      <p>Des ressources utiles : <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript" target="_blank">MDN JavaScript</a>, <a href="https://www.w3schools.com/js/" target="_blank">W3Schools JS</a>, tutoriels vidéo sur YouTube.</p>
+    </div>
+
+  </div>
+</body>
+</html>
